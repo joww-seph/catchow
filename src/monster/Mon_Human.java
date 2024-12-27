@@ -14,7 +14,7 @@ public class Mon_Human extends Entity {
 		this.gp = gp;
 
 		name = "Human";
-		speed = 2;
+		speed = 3;
 		maxLife = 99;
 		life = maxLife;
 		attack = 3;

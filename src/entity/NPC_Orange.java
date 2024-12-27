@@ -1,13 +1,8 @@
 package entity;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-
 import kachow.GamePanel;
-import kachow.UtilityTool;
 
 public class NPC_Orange extends Entity {
 	

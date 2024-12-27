@@ -12,7 +12,6 @@ import kachow.GamePanel;
 import kachow.KeyHandler;
 import kachow.UtilityTool;
 import object.Obj_Slash;
-import tile.TileManager;
 
 public class Player extends Entity {
 	
@@ -20,7 +19,7 @@ public class Player extends Entity {
 	
 	private int frames = 0, temp = 0, run = 4, idle = 16, jump = 12, dash = 2, attack = 4, sit = 8;
 	public long dashStartTime, dashTemp, dashEndTime = 0, attackStartTime, invisibleStart, fasterStart, dblJumpStart, airSlashStart;
-	public long fasterTemp, invisibleTemp, dblJumpTemp, airSlashTemp;
+	public long fasterTemp = 0, invisibleTemp = 0, dblJumpTemp = 0, airSlashTemp = 0;
 	private int playerJumpSpeed, jumpNum = 0;
 	private boolean jumpPressed = false;
 	
@@ -76,7 +75,11 @@ public class Player extends Entity {
 		projectile = new Obj_Slash(gp);
 		
 		}
-
+		isFaster = false;
+		isInvisible = false;
+		canDoubleJump = false;
+		canAirSlash = false;
+		canDash = true;
 		playerJumpSpeed = 13;
 		maxLife = 9;
 		life = maxLife;
@@ -861,18 +864,8 @@ public class Player extends Entity {
 				break;
 			case "Exit":
 				gp.stage++;
-				if (gp.stage == 5) {
-					worldX = gp.tileSize * 158;
-					worldY = gp.tileSize * 4;
-				} else {
-					worldX = gp.tileSize;
-					worldY = gp.tileSize * 6;
-				}
-				isFaster = false;
-				isInvisible = false;
-				canDoubleJump = false;
-				canAirSlash = false;
-				canDash = true;
+				setDefaultValues();
+				
 				gp.saveLoad.save();
 				
 				break;

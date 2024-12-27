@@ -34,6 +34,7 @@ public class KeyHandler implements KeyListener {
 				switch(gp.ui.commandNum) {
 				case 0:
 					gp.gameState = gp.cutsceneState;
+					gp.stage = 1;
 					gp.ui.commandNum = 0;
 					break;
 				case 1: 
@@ -84,11 +85,11 @@ public class KeyHandler implements KeyListener {
 			
 			if (code == KeyEvent.VK_ESCAPE) {
 				gp.gameState = gp.pauseState;
-				gp.player.fasterTemp = System.currentTimeMillis() - gp.player.fasterStart;
-				gp.player.dblJumpTemp = System.currentTimeMillis() - gp.player.dblJumpStart;
-				gp.player.invisibleTemp = System.currentTimeMillis() - gp.player.invisibleStart;
-				gp.player.airSlashTemp = System.currentTimeMillis() - gp.player.airSlashStart;
-				gp.player.dashTemp = System.currentTimeMillis() - gp.player.dashStartTime;
+				if (gp.player.isFaster) gp.player.fasterTemp = System.currentTimeMillis() - gp.player.fasterStart;
+				if (gp.player.canDoubleJump) gp.player.dblJumpTemp = System.currentTimeMillis() - gp.player.dblJumpStart;
+				if (gp.player.isInvisible) gp.player.invisibleTemp = System.currentTimeMillis() - gp.player.invisibleStart;
+				if (gp.player.canAirSlash) gp.player.airSlashTemp = System.currentTimeMillis() - gp.player.airSlashStart;
+				if (!gp.player.canDash) gp.player.dashTemp = System.currentTimeMillis() - gp.player.dashStartTime;
 			}
 			
 		} else if (gp.gameState == gp.pauseState) {

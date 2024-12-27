@@ -4,7 +4,6 @@ import monster.Mon_Garfield;
 import monster.Mon_Hawk;
 import monster.Mon_Human;
 import monster.Mon_Milky;
-import monster.Mon_Mouse;
 import object.Obj_Bus;
 import object.Obj_Cabinet;
 import object.Obj_Car1;

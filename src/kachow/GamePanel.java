@@ -8,11 +8,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import entity.*;
@@ -40,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int worldHeight = tileSize * maxWorldRow;
 	
 	int fps = 60;
-	public int stage = 7, temp = 0;
+	public int stage = 1, temp = 0;
 	
 	public TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler(this);
@@ -138,7 +134,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public void update() {
 		
-		System.out.println(player.fasterTemp);
+		System.out.println(stage);
 		
 		if (gameState == pauseState) {
 			pauseTime = System.currentTimeMillis();
@@ -147,12 +143,9 @@ public class GamePanel extends JPanel implements Runnable {
 		if (gameState == titleState) {
 			ui.update();
 			temp = 0;
-			player.setDefaultValues();
 		}
 		
 		if (gameState == playState) {
-			
-			//pauseTime = 0;
 			
 			if (temp != stage) {
 				stopMusic();
@@ -166,10 +159,6 @@ public class GamePanel extends JPanel implements Runnable {
 						monster[i] = null;
 					}
 				}
-				aSetter.setObject();
-				aSetter.setMonster();
-				temp = stage;
-				player.life = 9;
 				
 				switch(stage) {
 				case 1:
@@ -215,6 +204,12 @@ public class GamePanel extends JPanel implements Runnable {
             		}
                     cutsceneStartTime = System.currentTimeMillis();                    
 				}
+				player.setDefaultValues();
+
+				aSetter.setObject();
+				aSetter.setMonster();
+				
+				temp = stage;
 			}
 			
 			player.update();
@@ -275,7 +270,7 @@ public class GamePanel extends JPanel implements Runnable {
 	                if(stage == 8) {
 	                	gameState = titleState;
 	                	stage = 1;
-	                	cutsceneIndex = 1;
+	                	cutsceneIndex = 0;
 	                	try {
 	            			cut1 = ImageIO.read(getClass().getResourceAsStream("/cutscenes/1.png"));
 	            			cut2 = ImageIO.read(getClass().getResourceAsStream("/cutscenes/2.png"));

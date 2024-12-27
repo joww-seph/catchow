@@ -1,7 +1,5 @@
 package monster;
 
-import java.util.Random;
-
 import entity.Entity;
 import kachow.GamePanel;
 
